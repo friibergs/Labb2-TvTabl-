@@ -17,24 +17,6 @@ function toggleMenu() {
     }
 }
 
-// let isOpen = false;
-
-// function slideMenuIn() {
-//     let left = -300;
-//     const interval = 10;
-//     const step = 10;
-// const slideInterval = setInterval= () => {
-//     if (left >= 0) {
-//         clearInterval(slideInterval);
-//         isOpen = true;
-//     } else {
-//         menu.c
-//     }
-// }
-
-// }
-
-
 async function getData(channel) {
 
     pageLoading.classList.remove('hidden');
