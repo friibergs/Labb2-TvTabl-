@@ -1,4 +1,5 @@
 const scheduleContainer = document.getElementById('js-schedule');
+const pageLoading = document.getElementById('js-loading');
 
 
 function toggleMenu() {
@@ -17,7 +18,7 @@ function toggleMenu() {
 }
 
 async function getData(channel) {
-    const pageLoading = document.querySelector('.hidden');
+    
     pageLoading.classList.remove('hidden');
 
     try {
