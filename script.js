@@ -6,7 +6,7 @@ let isMenuOpen;
 
 function toggleMenu() {
 
-    if(!isMenuOpen) {
+    if (!isMenuOpen) {
         openMenu();
     } else {
         closeMenu();
@@ -29,6 +29,7 @@ function openMenu() {
     icon.classList.add('fa-times');
     isMenuOpen = true;
 }
+
 
 function closeMenu() {
     let currentLeft = 0; // Startposition för menyn
