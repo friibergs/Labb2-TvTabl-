@@ -5,16 +5,16 @@ const icon = document.querySelector('.menu-icon i');
 
 
 function toggleMenu() {
-    
+
     menu.classList.toggle('menu--show');
 
-        if(menu.classList.contains('menu--show')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+    if (menu.classList.contains('menu--show')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
 }
 
 // let isOpen = false;
@@ -36,7 +36,7 @@ function toggleMenu() {
 
 
 async function getData(channel) {
-    
+
     pageLoading.classList.remove('hidden');
 
     try {
@@ -65,11 +65,16 @@ async function setChannel(channel) {
     channelTitle.innerHTML = channel;
 
     try {
+        pageLoading.classList.remove('hidden');
+        scheduleContainer.innerHTML = '';
+
         const data = await getData(channel);
         render(data);
 
     } catch (error) {
         console.error("Error setting channel:", error)
+    } finally {
+        pageLoading.classList.add('hidden');
     }
 }
 
