@@ -1,12 +1,12 @@
 const scheduleContainer = document.getElementById('js-schedule');
 const pageLoading = document.getElementById('js-loading');
+const menu = document.querySelector('.menu');
+const icon = document.querySelector('.menu-icon i');
 
 
 function toggleMenu() {
-    const menu = document.querySelector('.menu');
+    
     menu.classList.toggle('menu--show');
-
-    const icon = document.querySelector('.menu-icon i');
 
         if(menu.classList.contains('menu--show')) {
             icon.classList.remove('fa-bars');
@@ -16,6 +16,24 @@ function toggleMenu() {
             icon.classList.add('fa-bars');
         }
 }
+
+// let isOpen = false;
+
+// function slideMenuIn() {
+//     let left = -300;
+//     const interval = 10;
+//     const step = 10;
+// const slideInterval = setInterval= () => {
+//     if (left >= 0) {
+//         clearInterval(slideInterval);
+//         isOpen = true;
+//     } else {
+//         menu.c
+//     }
+// }
+
+// }
+
 
 async function getData(channel) {
     
