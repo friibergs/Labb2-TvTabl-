@@ -2,20 +2,33 @@ const scheduleContainer = document.getElementById('js-schedule');
 const pageLoading = document.getElementById('js-loading');
 const menu = document.querySelector('.menu');
 const icon = document.querySelector('.menu-icon i');
-
+let isMenuOpen;
 
 function toggleMenu() {
 
-    menu.classList.toggle('menu--show');
-
-    if (menu.classList.contains('menu--show')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
+    if(!isMenuOpen) {
+        openMenu();
     } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        closeMenu();
     }
 }
+
+
+function openMenu() {
+    menu.classList.add('menu--show');
+    icon.classList.remove('fa-bars');
+    icon.classList.add('fa-times');
+    isMenuOpen = true;
+}
+
+
+function closeMenu() {
+    menu.classList.remove('menu--show');
+    icon.classList.add('fa-bars');
+    icon.classList.remove('fa-times');
+    isMenuOpen = false;
+}
+
 
 async function getData(channel) {
 
@@ -41,7 +54,6 @@ async function getData(channel) {
 }
 
 
-
 async function setChannel(channel) {
     const channelTitle = document.getElementById('js-title');
     channelTitle.innerHTML = channel;
@@ -58,6 +70,8 @@ async function setChannel(channel) {
     } finally {
         pageLoading.classList.add('hidden');
     }
+
+    closeMenu();
 }
 
 
