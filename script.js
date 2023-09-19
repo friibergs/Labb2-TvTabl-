@@ -15,15 +15,32 @@ function toggleMenu() {
 
 
 function openMenu() {
-    menu.classList.add('menu--show');
+    let currentLeft = -300; // Startposition för menyn
+    const menuAnimation = setInterval(() => {
+        if (currentLeft >= 0) {
+            clearInterval(menuAnimation); // Stoppa animationen när menyn är helt öppen
+        } else {
+            currentLeft += 10; // Ändra positionen gradvis
+            menu.style.left = currentLeft + 'px';
+        }
+    }, 10); // Uppdatera positionen var 10 ms
+
     icon.classList.remove('fa-bars');
     icon.classList.add('fa-times');
     isMenuOpen = true;
 }
 
-
 function closeMenu() {
-    menu.classList.remove('menu--show');
+    let currentLeft = 0; // Startposition för menyn
+    const menuAnimation = setInterval(() => {
+        if (currentLeft <= -300) {
+            clearInterval(menuAnimation); // Stoppa animationen när menyn är helt stängd
+        } else {
+            currentLeft -= 10; // Ändra positionen gradvis
+            menu.style.left = currentLeft + 'px';
+        }
+    }, 10); // Uppdatera positionen var 10 ms
+
     icon.classList.add('fa-bars');
     icon.classList.remove('fa-times');
     isMenuOpen = false;
