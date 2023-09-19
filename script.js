@@ -1,8 +1,19 @@
 const scheduleContainer = document.getElementById('js-schedule');
 
+
 function toggleMenu() {
     const menu = document.querySelector('.menu');
     menu.classList.toggle('menu--show');
+
+    const icon = document.querySelector('.menu-icon i');
+
+        if(menu.classList.contains('menu--show')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
 }
 
 async function getData(channel) {
