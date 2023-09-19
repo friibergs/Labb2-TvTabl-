@@ -3,34 +3,30 @@ const scheduleContainer = document.getElementById('js-schedule');
 function toggleMenu() {
     const menu = document.querySelector('.menu');
     menu.classList.toggle('menu--show');
-}   
-
-const clearContainer = () => {
-scheduleContainer.innerHTML = '';
 }
 
 async function getData(channel) {
-        const pageLoading = document.querySelector('.hidden');
-        pageLoading.classList.remove('hidden');
+    const pageLoading = document.querySelector('.hidden');
+    pageLoading.classList.remove('hidden');
 
-        try{
-            const response = await fetch (`data/${channel}.json`)
+    try {
+        const response = await fetch(`data/${channel}.json`)
 
-            if (!response.ok) {
-                throw new Error ("Error, respons not ok");
-            }
-
-            const data = await response.json();
-            return data;
-
-        } catch (error) {
-            console.error("Error, couldn't load data", error);
-            throw error;
-
-        } finally {
-            pageLoading.classList.add('hidden');
+        if (!response.ok) {
+            throw new Error("Error, respons not ok");
         }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error("Error, couldn't load data", error);
+        throw error;
+
+    } finally {
+        pageLoading.classList.add('hidden');
     }
+}
 
 
 
@@ -41,7 +37,7 @@ async function setChannel(channel) {
     try {
         const data = await getData(channel);
         render(data);
-       
+
     } catch (error) {
         console.error("Error setting channel:", error)
     }
@@ -58,8 +54,9 @@ function render(data) {
     data.forEach(program => {
         htmlString += `<li class="list-group-item"><strong>${program.start.substr(11, 5)}</strong><div>${program.name}</div></li>`;
     });
-htmlString += '</ul>';
 
-scheduleContainer.innerHTML = htmlString;
-        
- }
+    htmlString += '</ul>';
+
+    scheduleContainer.innerHTML = htmlString;
+
+}
