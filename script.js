@@ -15,15 +15,15 @@ function toggleMenu() {
 
 
 function openMenu() {
-    let currentLeft = -300; // Startposition för menyn
+    let currentLeft = -300;
     const menuAnimation = setInterval(() => {
         if (currentLeft >= 0) {
-            clearInterval(menuAnimation); // Stoppa animationen när menyn är helt öppen
+            clearInterval(menuAnimation);
         } else {
-            currentLeft += 10; // Ändra positionen gradvis
+            currentLeft += 10;
             menu.style.left = currentLeft + 'px';
         }
-    }, 10); // Uppdatera positionen var 10 ms
+    }, 10);
 
     icon.classList.remove('fa-bars');
     icon.classList.add('fa-times');
@@ -32,15 +32,15 @@ function openMenu() {
 
 
 function closeMenu() {
-    let currentLeft = 0; // Startposition för menyn
+    let currentLeft = 0;
     const menuAnimation = setInterval(() => {
         if (currentLeft <= -300) {
-            clearInterval(menuAnimation); // Stoppa animationen när menyn är helt stängd
+            clearInterval(menuAnimation);
         } else {
-            currentLeft -= 10; // Ändra positionen gradvis
+            currentLeft -= 10;
             menu.style.left = currentLeft + 'px';
         }
-    }, 10); // Uppdatera positionen var 10 ms
+    }, 10);
 
     icon.classList.add('fa-bars');
     icon.classList.remove('fa-times');
@@ -48,27 +48,20 @@ function closeMenu() {
 }
 
 
-async function getData(channel) {
-
+function getData(channel) {
     pageLoading.classList.remove('hidden');
+    const url = `data/${channel}.json`;
 
-    try {
-        const response = await fetch(`data/${channel}.json`)
-
-        if (!response.ok) {
-            throw new Error("Error, respons not ok");
-        }
-
-        const data = await response.json();
-        return data;
-
-    } catch (error) {
-        console.error("Error, couldn't load data", error);
-        throw error;
-
-    } finally {
-        pageLoading.classList.add('hidden');
-    }
+    return fetch(url)
+        .then(response => response.json())
+        .then((data) => {
+            pageLoading.classList.add('hidden');
+            return data;
+        })
+        .catch((error) => {
+            console.error("Error, couldn't load data", error);
+            throw error;
+        });
 }
 
 
